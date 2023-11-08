@@ -1,0 +1,9 @@
+{
+  "paths": [
+    {
+      "name": "chrome",
+      "path": "C:\\Program Files\\Google\\Chrome\\Application",
+      "exe": "chrome.exe"
+    }
+  ]
+}
