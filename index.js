@@ -5,9 +5,13 @@ const prompt = require('prompt-sync')();
 
 let token
 
+const host = JSON.parse(fs.readFileSync('./config.json', {encoding: 'utf8'})).host;
+
+console.log(host)
+
 axios({
     method: 'post',
-    url: "http://localhost:2500/connectClient",
+    url: "http://" + host + "/connectClient",
     headers: {},
     data: {
         "client": "receiver"
@@ -20,7 +24,7 @@ axios({
     setInterval(() => {
         axios({
             method: "get",
-            url: "http://localhost:2500/checkQueue",
+            url: "http://" + host + ":2500/checkQueue",
             headers: {
                 "token": token
             }
