@@ -5,13 +5,16 @@ const prompt = require('prompt-sync')();
 
 let token
 
+
 const host = JSON.parse(fs.readFileSync('./config.json', {encoding: 'utf8'})).host;
 
 console.log(host)
 
+let data = JSON.parse(fs.readFileSync('./config.json', {encoding: 'utf8'}));
+
 axios({
     method: 'post',
-    url: "http://" + host + "/connectClient",
+    url: "http://" + host + ":2500/connectClient",
     headers: {},
     data: {
         "client": "receiver"
@@ -47,36 +50,41 @@ axios({
                 function startApp(appName) {
 
 
-                    const data = JSON.parse(fs.readFileSync('./config.json', {encoding: 'utf8'}));
+                    let found = false
 
 
                     for (let i = 0; i < data.paths.length; i++) {
 
                         if (appName === data.paths[i].name) {
 
-                            exec("cd '" + data.paths[i].path + "'; start " + data.paths[i].exe)
+                            found = true
+
+                            exec("cd " + data.paths[i].path + " && start " + data.paths[i].exe)
+
+                            exec(data.paths[i].exe).unref()
 
                             console.log("Starting", data.paths[i].exe)
 
-                        } else {
-                            console.log(false)
-
-                            let addApp = {
-                                "name": appName,
-                                "path": "",
-                                "exe": ""
-                            }
-
-                            const path = prompt('Path > ');
-                            const exe = prompt('exe name > ');
-
-                            addApp.path = path
-                            addApp.exe = exe
-
-                            data.paths.push(addApp)
-
-                            fs.writeFileSync("./config.json", JSON.stringify(data))
                         }
+                    }
+
+                    if (!found) {
+
+                        let addApp = {
+                            "name": appName,
+                            "path": "",
+                            "exe": ""
+                        }
+
+                        const path = prompt('Path > ');
+                        const exe = prompt('exe name > ');
+
+                        addApp.path = path
+                        addApp.exe = exe
+
+                        data.paths.push(addApp)
+
+                        fs.writeFileSync("./config.json", JSON.stringify(data))
                     }
 
 
@@ -90,4 +98,3 @@ axios({
 
 
 });
-
