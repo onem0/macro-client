@@ -16,7 +16,12 @@ When you create a shortcut, you have to put in this information:
 - Shortcut Icon - The Icon of the shortcut. You can get the names here: https://fonts.google.com/icons
 - Shortcut Color - The color of the Shortcut
 - Shortcut Action - What should hapen when you click the shortcut
-- Action Name - What app sould open (Then you have to paste in the path and the exe of the program on your Computer)
+- Action Name - What app sould open (on your computer you get asked for this
+
+```
+path > [path location of the Program]
+exe > [name of the exe you want to open]
+```
 
 # Config
 
