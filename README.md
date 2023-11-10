@@ -22,6 +22,7 @@ When you create a shortcut, you have to put in this information:
 path > [path location of the Program]
 exe > [name of the exe you want to open]
 ```
+You dont have to do it for the same App again.
 
 # Config
 
