@@ -1,29 +1,26 @@
-# macro-client
+# Macro Client
 
-This is a macro client by me.
+This is a macro client created by me.
 
-# How to use it
+## How to Use
 
-You have to download the file and start it using ```node index.js```. You must have NodeJS installed. Here the download link: https://nodejs.org/en/download
+1. Download the files and start the application by using the command `node index.js`. Ensure that NodeJS is installed. You can download it [here](https://nodejs.org/en/download).
 
-When you have runned the command, you'll get a token. You open this website on your Phone, Tablet, etc. to controll your device: http://45.81.233.200:2000/ (you can change the Port in the config.json). Then put the Token into the input field, create a category and a Shortcut. 
+2. After running the command, you will receive a token. Open the following website on your phone, tablet, etc., to control your device: [http://45.81.233.200:2000/](http://45.81.233.200:2000/) (you can change the port in the `config.json`). Then, enter the token into the input field, create a category, and add a shortcut.
 
-# Create a shortcut
+## Creating a Shortcut
 
-When you create a shortcut, you have to put in this information: 
-- Shortcut Name - The title of the shortcut
-- Shortcut Description - The text under the Name
-- Shortcut Icon - The Icon of the shortcut. You can get the names here: https://fonts.google.com/icons
-- Shortcut Color - The color of the Shortcut
-- Shortcut Action - What should hapen when you click the shortcut
-- Action Name - What app sould open (on your computer you get asked for this
+When creating a shortcut, provide the following information:
 
-```
-path > [path location of the Program]
-exe > [name of the exe you want to open]
-```
-You dont have to do it for the same App again.
+- **Shortcut Name:** The title of the shortcut.
+- **Shortcut Description:** The text under the name.
+- **Shortcut Icon:** The icon of the shortcut. You can find icon names [here](https://fonts.google.com/icons).
+- **Shortcut Color:** The color of the shortcut.
+- **Shortcut Action:** Define what should happen when you click the shortcut.
+    - **Action Name:** Specify the app to open (on your computer, you will be prompted for this).
+        - **Path:** [Path location of the program]
+        - **Exe:** [Name of the exe you want to open]
 
-# Config
+## Configurations
 
-If you have pasted something wrongly, you can edit it in the config.json
+If you make a mistake, you can edit it in the `config.json`.
