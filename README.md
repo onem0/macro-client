@@ -6,7 +6,7 @@ This is a macro client by me.
 
 You have to download the file and start it using ```node index.js```. You must have NodeJS installed. Here the download link: https://nodejs.org/en/download
 
-When you have runned the command, you'll get a token. You open this website on your Phone, Tablet, etc. to controll your device: http://45.81.233.200:2000/. Then put the Token into the input field, create a category and a Shortcut. 
+When you have runned the command, you'll get a token. You open this website on your Phone, Tablet, etc. to controll your device: http://45.81.233.200:2000/ (you can change the Port in the config.json). Then put the Token into the input field, create a category and a Shortcut. 
 
 # Create a shortcut
 
