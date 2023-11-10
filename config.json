@@ -1,10 +1,4 @@
 {
   "host": "45.81.233.200",
-  "paths": [
-    {
-      "name": "chrome",
-      "path": "C:\\Program Files\\Google\\Chrome\\Application",
-      "exe": "chrome.exe"
-    }
-  ]
+  "paths": []
 }
