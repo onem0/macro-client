@@ -4,7 +4,7 @@ This is a macro client created by me.
 
 ## How to Use
 
-1. Download the files and start the application by using the command `node index.js`. Ensure that NodeJS is installed. You can download it [here](https://nodejs.org/en/download).
+1. Download the files and start the application by using the command `node index.js` or running the `start.bat`. Ensure that NodeJS is installed. You can download it [here](https://nodejs.org/en/download).
 
 2. After running the command, you will receive a token. Open the following website on your phone, tablet, etc., to control your device: [http://45.81.233.200:2000/](http://45.81.233.200:2000/) (you can change the URL in the `config.json`). Then, enter the token into the input field, create a category, and add a shortcut.
 
