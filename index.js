@@ -1,9 +1,15 @@
 const axios = require("axios")
 const {exec} = require('child_process');
 const fs = require("fs")
+const express = require("express")
+const cors = require("cors")
+
+const app = express()
 const prompt = require('prompt-sync')();
 
 let token
+
+const spotifyLink = "https://accounts.spotify.com/en/authorize?client_id=0d94fdd25d3c403ebaeb67d04858152a&redirect_uri=http://localhost:6748/success&response_type=token&scope=user-modify-playback-state"
 
 
 const host = JSON.parse(fs.readFileSync('./config.json', {encoding: 'utf8'})).host;
@@ -11,6 +17,8 @@ const host = JSON.parse(fs.readFileSync('./config.json', {encoding: 'utf8'})).ho
 console.log(host)
 
 let data = JSON.parse(fs.readFileSync('./config.json', {encoding: 'utf8'}));
+
+let server
 
 axios({
     method: 'post',
@@ -38,6 +46,8 @@ axios({
             }
         }).then((response) => {
 
+            data = JSON.parse(fs.readFileSync('./config.json', {encoding: 'utf8'}));
+
             if (response.data.status === 401) {
 
             } else {
@@ -49,6 +59,10 @@ axios({
                     if (response.data[i].job === "startApp") {
 
                         startApp(response.data[i].comment)
+                    }
+
+                    if(response.data[i].job === "spotifyControls") {
+                        spotifyControls(response.data[i].comment)
                     }
                 }
 
@@ -94,6 +108,29 @@ axios({
 
 
                 }
+
+                function spotifyControls (control) {
+                    if(data.spotifyToken === null) {
+                        console.log("To log into your Spotify account, follow this Link: " + spotifyLink)
+                        server = app.listen(6748)
+                    } else {
+                        if(control === "pause") {
+                            sendSpotify(control)
+                        } else if(control === "continue") {
+                            sendSpotify(control)
+                        } else if(control === "skip") {
+                            sendSpotify(control)
+                        } else if(control === "back") {
+                            sendSpotify(control)
+                        } else if(control === "louder") {
+                            sendSpotify(control)
+                        } else if(control === "quieter") {
+                            sendSpotify(control)
+                        } else {
+                            console.log("Please check the contols.")
+                        }
+                    }
+                }
             }
 
         }).catch((error) => {
@@ -103,3 +140,60 @@ axios({
 
 
 });
+
+function sendSpotify(action) {
+    const token = data.spotifyToken
+
+    console.log("Spotify " + action)
+
+    if(action === "continue") {
+        axios({
+            method: 'put',
+            url: "https://api.spotify.com/v1/me/player/play",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
+            data: {}
+        }).then((response) => {
+
+        }).catch((error) => {
+
+        })
+    }
+
+    if(action === "pause") {
+        axios({
+            method: 'put',
+            url: "https://api.spotify.com/v1/me/player/pause",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
+            data: {}
+        }).then((response) => {
+
+        }).catch((error) => {
+
+        })
+    }
+}
+
+app.use(cors())
+
+
+app.get("/success", (req, res) => {
+
+
+    res.send(fs.readFileSync('./pages/success.html', {encoding: 'utf8'}))
+})
+
+app.get("/setToken", (req, res) => {
+    console.log(req.headers)
+
+    data.spotifyToken = req.headers.token
+
+    fs.writeFileSync("./config.json", JSON.stringify(data))
+
+    data = JSON.parse(fs.readFileSync('./config.json', {encoding: 'utf8'}));
+
+    server.close()
+})

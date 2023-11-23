@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spotify account linked</title>
+</head>
+<body>
+    <p>Your Spotify account is linked. You can close this Page now.</p>
+
+    <script>
+        const href = location.href.replace("#", "?")
+
+        var url_string = href;
+        var url = new URL(url_string);
+        var token = url.searchParams.get("access_token");
+
+        localStorage.setItem("token", token)
+
+        fetch("http://localhost:6748/setToken", {
+            method: "get",
+            headers: {
+                "token": token
+            }
+        });
+
+    </script>
+</body>
+</html>
