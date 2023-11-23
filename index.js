@@ -187,7 +187,6 @@ app.get("/success", (req, res) => {
 })
 
 app.get("/setToken", (req, res) => {
-    console.log(req.headers)
 
     data.spotifyToken = req.headers.token
 
