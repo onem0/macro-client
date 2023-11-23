@@ -22,7 +22,12 @@ axios({
 }).then((response) => {
     token = response.data.token
 
-    console.log("Token:", token)
+    console.warn("Please do not show your token to others.")
+    setTimeout(() => {
+        console.log("Token:", token)
+    }, 2000)
+
+
 
     setInterval(() => {
         axios({
