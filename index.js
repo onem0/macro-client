@@ -175,6 +175,36 @@ function sendSpotify(action) {
 
         })
     }
+
+    if(action === "skip") {
+        axios({
+            method: 'post',
+            url: "https://api.spotify.com/v1/me/player/next",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
+            data: {}
+        }).then((response) => {
+
+        }).catch((error) => {
+
+        })
+    }
+
+    if(action === "back") {
+        axios({
+            method: 'post',
+            url: "https://api.spotify.com/v1/me/player/previous",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
+            data: {}
+        }).then((response) => {
+
+        }).catch((error) => {
+
+        })
+    }
 }
 
 app.use(cors())
